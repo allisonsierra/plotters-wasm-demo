@@ -26,6 +26,10 @@
 				<option value="mandelbrot">Mandelbrot Set</option>
 				<option value="3d-plot">3D Plot Demo</option>
 			</select>
+			<div id="mandelbrot-control" class="hide">
+				<label for="x_max">X Max: </label> <input type="number" min="0.6" max="10" id="x_max" value="0.6" step="0.1"> <br/>
+				<label for="y_max">Y Max: </label> <input type="number" min="1.2" max="20" id="y_max" value="1.2" step="0.1">
+			</div>
 			<div id="3d-control" class="hide">
 				<label for="pitch">Pitch: </label> <input type="range" min="0" max="157" id="pitch" value="10"> <br/>
 				<label for="yaw">Yaw: </label> <input type="range" min="0" max="314" id="yaw" value="50">

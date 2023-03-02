@@ -38,8 +38,8 @@ impl Chart {
 
     /// Draw Mandelbrot set on the provided canvas element.
     /// Return `Chart` struct suitable for coordinate conversion.
-    pub fn mandelbrot(canvas: HtmlCanvasElement) -> Result<Chart, JsValue> {
-        let map_coord = mandelbrot::draw(canvas).map_err(|err| err.to_string())?;
+    pub fn mandelbrot(canvas: HtmlCanvasElement, x_max: f64, y_max: f64) -> Result<Chart, JsValue> {
+        let map_coord = mandelbrot::draw(canvas, x_max, y_max).map_err(|err| err.to_string())?;
         Ok(Chart {
             convert: Box::new(map_coord),
         })

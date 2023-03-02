@@ -8,6 +8,7 @@ const plotType = document.getElementById("plot-type");
 const pitch = document.getElementById("pitch");
 const yaw = document.getElementById("yaw");
 const control = document.getElementById("3d-control");
+const mandelbrotControl = document.getElementById("mandelbrot-control");
 const status = document.getElementById("status");
 
 let chart = null;
@@ -37,6 +38,10 @@ function setupUI() {
 	pitch.addEventListener("change", updatePlot);
 	yaw.addEventListener("input", updatePlot);
 	pitch.addEventListener("input", updatePlot);
+	x_max.addEventListener("change", updatePlot);
+	y_max.addEventListener("change", updatePlot);
+	x_max.addEventListener("input", updatePlot);
+	y_max.addEventListener("input", updatePlot);
     window.addEventListener("resize", setupCanvas);
     window.addEventListener("mousemove", onMouseMove);
 }
@@ -78,6 +83,13 @@ function updatePlot3d() {
 	coord.innerText = `Pitch:${pitch_value}, Yaw:${yaw_value}`
 }
 
+function updateMandlebrot() {
+	let x_max_value = Number(x_max.value);
+	let y_max_value = Number(y_max.value);
+	Chart.mandelbrot(canvas, x_max_value, y_max_value);
+	coord.innerText = `X Max:${x_max_value}, Y Max:${y_max_value}`
+}
+
 /** Redraw currently selected plot. */
 function updatePlot() {
     const selected = plotType.selectedOptions[0];
@@ -87,14 +99,18 @@ function updatePlot() {
 	switch(selected.value) {
 		case "mandelbrot":
 			control.classList.add("hide");
-			chart = Chart.mandelbrot(canvas);
+			mandelbrotControl.classList.remove("hide");
+			//chart = Chart.mandelbrot(canvas);
+			updateMandlebrot();
 			break;
 		case "3d-plot": 
 			control.classList.remove("hide");
+			mandelbrotControl.classList.add("hide");
 			updatePlot3d();
 			break;
 		default:
 			control.classList.add("hide");
+			mandelbrotControl.classList.add("hide");
 			chart = Chart.power("canvas", Number(selected.value))
 	}
 	

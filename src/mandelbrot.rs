@@ -5,7 +5,7 @@ use std::ops::Range;
 use web_sys::HtmlCanvasElement;
 
 /// Draw Mandelbrot set
-pub fn draw(element: HtmlCanvasElement) -> DrawResult<impl Fn((i32, i32)) -> Option<(f64, f64)>> {
+pub fn draw(element: HtmlCanvasElement, x_max: f64, y_max: f64) -> DrawResult<impl Fn((i32, i32)) -> Option<(f64, f64)>> {
     let backend = CanvasBackend::with_canvas_object(element).unwrap();
 
     let root = backend.into_drawing_area();
@@ -15,7 +15,8 @@ pub fn draw(element: HtmlCanvasElement) -> DrawResult<impl Fn((i32, i32)) -> Opt
         .margin(20)
         .x_label_area_size(10)
         .y_label_area_size(10)
-        .build_cartesian_2d(-2.1..0.6, -1.2..1.2)?;
+        //.build_cartesian_2d(-2.1..0.6, -1.2..1.2)?;
+        .build_cartesian_2d(-2.1..x_max, -1.2..y_max)?;
 
     chart
         .configure_mesh()
