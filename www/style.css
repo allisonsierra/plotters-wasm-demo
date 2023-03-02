@@ -6,12 +6,12 @@ html, body, main {
 
 body {
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
     body {
         padding: 10px;
         box-sizing: border-box;

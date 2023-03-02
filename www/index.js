@@ -38,8 +38,12 @@ function setupUI() {
 	pitch.addEventListener("change", updatePlot);
 	yaw.addEventListener("input", updatePlot);
 	pitch.addEventListener("input", updatePlot);
+	x_min.addEventListener("change", updatePlot);
+	y_min.addEventListener("change", updatePlot);
 	x_max.addEventListener("change", updatePlot);
 	y_max.addEventListener("change", updatePlot);
+	x_min.addEventListener("input", updatePlot);
+	y_min.addEventListener("input", updatePlot);
 	x_max.addEventListener("input", updatePlot);
 	y_max.addEventListener("input", updatePlot);
     window.addEventListener("resize", setupCanvas);
@@ -84,10 +88,12 @@ function updatePlot3d() {
 }
 
 function updateMandlebrot() {
+	let x_min_value = Number(x_min.value);
 	let x_max_value = Number(x_max.value);
+	let y_min_value = Number(y_min.value);
 	let y_max_value = Number(y_max.value);
-	Chart.mandelbrot(canvas, x_max_value, y_max_value);
-	coord.innerText = `X Max:${x_max_value}, Y Max:${y_max_value}`
+	Chart.mandelbrot(canvas, x_min_value, x_max_value, y_min_value, y_max_value);
+	coord.innerText = `X Min:${x_min_value}, X Max:${x_max_value}, Y Min:${y_min_value}, Y Max:${y_max_value}`
 }
 
 /** Redraw currently selected plot. */
